@@ -5,15 +5,24 @@ help:
 
 setup:
 
-install:
+install: \
+	node_modules
 
 
 info:
 	npx --no esbuild --version
 
-build:
+build: \
+	out.js
+
+out.js: | app.jsx
+	npx --no esbuild $| --bundle --outfile=$@
+
+node_modules:
+	npm install
 
 clean:
+	rm -rf out.js
 
 destroy:
 	rm -rf node_modules
