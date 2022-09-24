@@ -1,4 +1,4 @@
-.PHONY: help setup install build clean destroy
+.PHONY: help setup install info build clean destroy
 
 help:
 	@cat $(firstword $(MAKEFILE_LSIT))
@@ -6,6 +6,10 @@ help:
 setup:
 
 install:
+
+
+info:
+	npx --no esbuild --version
 
 build:
 
