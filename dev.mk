@@ -15,14 +15,14 @@ info:
 	npx --no esbuild --version
 
 build: \
-	dist/out.js \
-	dist/bundle.js
+	dist/app.js \
+	dist/app.bundle.js
 
-dist/out.js: dist | app.jsx
+dist/app.js: dist | app.jsx
 	npx --no esbuild $| --bundle --sourcemap --target=chrome58,firefox57,safari11,edge16 --outfile=$@
 
-dist/bundle.js: dist | app.jsx
-	npx --no esbuild $| --bundle --platform=node --target=node10.4 --outfile=$@
+dist/app.bundle.js: dist | app.jsx
+	npx --no esbuild $| --bundle --sourcemap --platform=node --target=node10.4 --outfile=$@
 
 dist:
 	mkdir $@

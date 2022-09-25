@@ -15,13 +15,13 @@ info:
 	npx --no esbuild --version
 
 build: \
-	dist/out.js \
-	dist/bundle.js
+	dist/app.js \
+	dist/app.bundle.js
 
-dist/out.js: dist | app.jsx
+dist/app.js: dist | app.jsx
 	npx --no esbuild $| --minify --target=chrome58,firefox57,safari11,edge16 --outfile=$@
 
-dist/bundle.js: dist | app.jsx
+dist/app.bundle.js: dist | app.jsx
 	npx --no esbuild $| --bundle --minify --platform=node --target=node10.4 --outfile=$@
 
 dist:
