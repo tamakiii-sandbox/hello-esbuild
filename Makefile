@@ -18,11 +18,11 @@ build: \
 	dist/app.js \
 	dist/app.bundle.js
 
-dist/app.js: dist | src/app.jsx
-	npx --no esbuild $| --minify --target=chrome58,firefox57,safari11,edge16 --outfile=$@
+dist/app.js: dist | src/app.tsx
+	npx --no esbuild $| --loader:.tsx=tsx --minify --target=chrome58,firefox57,safari11,edge16 --outfile=$@
 
-dist/app.bundle.js: dist | src/app.jsx
-	npx --no esbuild $| --bundle --minify --platform=node --target=node10.4 --outfile=$@
+dist/app.bundle.js: dist | src/app.tsx
+	npx --no esbuild $| --loader:.tsx=tsx --bundle --minify --platform=node --target=node10.4 --outfile=$@
 
 dist:
 	mkdir $@
