@@ -15,17 +15,20 @@ info:
 	npx --no esbuild --version
 
 build: \
-	out.js
+	dist/out.js \
+	dist/bundle.js
 
-out.js: | app.jsx
-	npx --no esbuild $| --bundle --minify --target=chrome58,firefox57,safari11,edge16 --outfile=$@
+dist/out.js: dist | app.jsx
+	npx --no esbuild $| --minify --target=chrome58,firefox57,safari11,edge16 --outfile=$@
 
-bundle: | app.jsx
-	npx --no esbuild $| --bundle --platform=node --target=node10.4 --outfile=$@
+dist/bundle.js: dist | app.jsx
+	npx --no esbuild $| --bundle --minify --platform=node --target=node10.4 --outfile=$@
+
+dist:
+	mkdir $@
 
 clean:
-	rm -rf out.js
-	rm -rf bundle
+	rm -rf dist
 
 destroy:
 	rm -rf node_modules
