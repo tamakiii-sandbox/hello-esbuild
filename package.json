@@ -1,0 +1,25 @@
+{
+  "name": "hello-esbuild-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamakiii-sandbox/hello-esbuild-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript/issues"
+  },
+  "homepage": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript#readme",
+  "dependencies": {
+    "esbuild": "^0.15.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
