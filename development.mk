@@ -13,10 +13,10 @@ node_modules:
 	npm install
 
 out.js: | app.jsx
-	npx --no esbuild $| --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outfile=$@
+	npx --no esbuild $| --bundle --outfile=$@
 
 clean:
-	-rm out.js
+	rm out.js
 
 uninstall:
-	-rm -rf node_modules
+	rm -rf node_modules
