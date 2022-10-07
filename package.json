@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript/issues"
   },
-  "homepage": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript#readme"
+  "homepage": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript#readme",
+  "dependencies": {
+    "esbuild": "^0.15.10"
+  }
 }
