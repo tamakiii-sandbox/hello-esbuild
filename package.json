@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/tamakiii-sandbox/hello-esbuild-typescript#readme",
   "dependencies": {
-    "esbuild": "^0.15.10"
+    "esbuild": "^0.15.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
