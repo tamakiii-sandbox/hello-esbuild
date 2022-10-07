@@ -4,3 +4,5 @@
 /out.node.js
 /out.deno.js
 /out.deno.json
+/out.deno.wasm.js
+/out.deno.wasm.json
