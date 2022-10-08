@@ -7,3 +7,7 @@ function hoge(foo: Foo) {
 }
 
 console.log(hoge({vaa: 'VAA'}))
+
+export {
+  Foo
+}
