@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "esbuild": "^0.15.10",
-    "tsc": "^2.0.4"
+    "esbuild": "^0.15.10"
   }
 }
