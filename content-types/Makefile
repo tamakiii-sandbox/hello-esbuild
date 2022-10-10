@@ -16,7 +16,8 @@ build: \
 	dist/jsx.js \
 	dist/json.js \
 	dist/css.js \
-	dist/css.html
+	dist/css.html \
+	dist/copy.js
 
 check:
 	npx --no -- tsc --noEmit typescript.ts
@@ -41,6 +42,9 @@ dist/css.js: dist | css.jsx
 
 dist/css.html: dist | css.html
 	cp $| $@
+
+dist/copy.js: dist | copy.js
+	npx --no -- esbuild $| --bundle --outfile=$@
 
 dist:
 	mkdir $@
