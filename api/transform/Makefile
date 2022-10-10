@@ -1,5 +1,7 @@
-.PHONY: help install clean uninstall
+.PHONY: help install build clean uninstall
 .PHONY: run
+
+PATH := ./node_modules/.bin:$(PATH)
 
 ESBUILD := npx --no -- esbuild
 TSC := npx --no -- tsc
@@ -14,8 +16,22 @@ node_modules:
 	npm install
 
 run:
-	echo 'let x: number = 1' | $(ESBUILD) --loader=ts
-	echo 'let x: string = 1' | bin/mktemp -e .ts - | xargs -I@ npx --no -- tsc --noEmit @
+	echo 'let x: number = 1' | esbuild --loader=ts
+	echo 'let x: number = 1' | bin/mktemp -e .ts - | xargs -I@ tsc --noEmit @
+	echo 'hooks = DEBUG && require("hooks")' | esbuild --define:DEBUG=true
+	echo 'hooks = DEBUG && require("hooks")' | esbuild --define:DEBUG=false
+	echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
+	echo 'console.log(process.env.NODE_ENV)' | esbuild --define:process.env.NODE_ENV="production"
+
+build: \
+	dist/entry-points
+
+dist/entry-points: dist | $(wildcard src/entry-points/*.ts)
+	esbuild $| --bundle --outdir=$@
+	tsc --emitDeclarationOnly --declaration --outDir $@ $|
+
+dist:
+	mkdir $@
 
 clean:
 	rm -rf dist
