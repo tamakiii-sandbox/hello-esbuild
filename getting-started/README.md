@@ -1,4 +1,4 @@
-# hello-esbuild-typescript
+# hello-esbuild/getting-started
 
 ## Usage
 ```sh
