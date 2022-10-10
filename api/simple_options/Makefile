@@ -1,5 +1,5 @@
 .PHONY: help install build clean uninstall
-.PHONY: run
+.PHONY: run serve
 
 PATH := ./node_modules/.bin:$(PATH)
 
@@ -31,7 +31,8 @@ build: \
 	dist/entry-points \
 	dist/inject \
 	dist/inject-with-define \
-	dist/loader
+	dist/loader \
+	dist/serve
 
 dist/entry-points: dist | $(wildcard src/entry-points/*.ts)
 	esbuild $| --bundle --outdir=$@
@@ -45,6 +46,11 @@ dist/inject-with-define: dist | src/inject-with-define
 
 dist/loader: dist | src/loader
 	esbuild $|/app.js --bundle --loader:.png=dataurl --loader:.svg=text --outdir=$@
+
+dist/serve: dist | src/serve
+	mkdir -p $@
+	cp $|/index.html $@/index.html
+	esbuild $|/app.js --servedir=$| --outdir=$@ --bundle
 
 dist:
 	mkdir $@
