@@ -1,8 +1,6 @@
 .PHONY: help install clean uninstall
 .PHONY: run
 
-SHELL := zsh
-
 ESBUILD := npx --no -- esbuild
 TSC := npx --no -- tsc
 
@@ -17,7 +15,7 @@ node_modules:
 
 run:
 	echo 'let x: number = 1' | $(ESBUILD) --loader=ts
-	echo 'let x: number = 1' | { read STDIN; npx --no -- tsc --noEmit `(){ mv $$1 $$1.ts && echo $$_ } =(echo $$STDIN)` }
+	echo 'let x: string = 1' | bin/mktemp -e .ts - | xargs -I@ npx --no -- tsc --noEmit @
 
 clean:
 	rm -rf dist
