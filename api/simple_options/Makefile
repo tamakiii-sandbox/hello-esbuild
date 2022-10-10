@@ -22,7 +22,10 @@ run:
 	echo 'hooks = DEBUG && require("hooks")' | esbuild --define:DEBUG=false
 	echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
 	echo 'console.log(process.env.NODE_ENV)' | esbuild --define:process.env.NODE_ENV="production"
-	echo 'require("fsevents")' | npx --no -- esbuild --bundle --external:fsevents --platform=node
+	echo 'require("fsevents")' | esbuild --bundle --external:fsevents --platform=node
+	echo 'alert("test")' | esbuild --format=iife
+	echo 'export default "test"' | esbuild --format=cjs
+	echo 'module.exports = "test"' | esbuild --format=esm
 
 build: \
 	dist/entry-points
