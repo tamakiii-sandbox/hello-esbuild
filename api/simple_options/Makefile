@@ -30,7 +30,8 @@ run:
 build: \
 	dist/entry-points \
 	dist/inject \
-	dist/inject-with-define
+	dist/inject-with-define \
+	dist/loader
 
 dist/entry-points: dist | $(wildcard src/entry-points/*.ts)
 	esbuild $| --bundle --outdir=$@
@@ -41,6 +42,9 @@ dist/inject: dist | src/inject
 
 dist/inject-with-define: dist | src/inject-with-define
 	esbuild $|/entry.js --bundle --define:process.cwd=dummy_process_cwd --inject:$|/process-shim.js --outdir=$@ --format=cjs
+
+dist/loader: dist | src/loader
+	esbuild $|/app.js --bundle --loader:.png=dataurl --loader:.svg=text --outdir=$@
 
 dist:
 	mkdir $@
