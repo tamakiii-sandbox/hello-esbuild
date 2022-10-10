@@ -12,7 +12,8 @@ node_modules:
 build: \
 	dist/javascript.js \
 	dist/typescript.js \
-	dist/typescript.d.ts
+	dist/typescript.d.ts \
+	dist/jsx.js
 
 check:
 	npx --no -- tsc --noEmit typescript.ts
@@ -25,6 +26,9 @@ dist/typescript.js: dist | typescript.ts
 
 dist/typescript.d.ts: dist | typescript.ts
 	npx --no -- tsc --emitDeclarationOnly --declaration --outFile $@ $|
+
+dist/jsx.js: dist | jsx.jsx
+	npx --no -- esbuild $| --bundle --platform=browser --target=chrome58,firefox57,safari11,edge16 --loader:.jsx=jsx --outfile=$@
 
 dist:
 	mkdir $@
