@@ -28,11 +28,19 @@ run:
 	echo 'module.exports = "test"' | esbuild --format=esm
 
 build: \
-	dist/entry-points
+	dist/entry-points \
+	dist/inject \
+	dist/inject-with-define
 
 dist/entry-points: dist | $(wildcard src/entry-points/*.ts)
 	esbuild $| --bundle --outdir=$@
 	tsc --emitDeclarationOnly --declaration --outDir $@ $|
+
+dist/inject: dist | src/inject
+	esbuild $|/entry.js --bundle --inject:$|/process-shim.js --outdir=$@ --format=cjs
+
+dist/inject-with-define: dist | src/inject-with-define
+	esbuild $|/entry.js --bundle --define:process.cwd=dummy_process_cwd --inject:$|/process-shim.js --outdir=$@ --format=cjs
 
 dist:
 	mkdir $@
