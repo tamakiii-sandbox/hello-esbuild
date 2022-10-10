@@ -4,13 +4,13 @@ import './button.css'
 
 class Button extends React.Component {
   render() {
-    return <button className="button">Click Me</button>;
+    return <button className="button">{this.props.children}</button>;
   }
 }
 
 const render = (container) => {
   const root = createRoot(container);
-  root.render(<Button></Button>);
+  root.render(<Button>Please click me</Button>);
 }
 
 export {
