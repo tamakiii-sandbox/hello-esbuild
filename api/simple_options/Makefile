@@ -17,7 +17,7 @@ node_modules:
 
 run:
 	echo 'let x: number = 1' | esbuild --loader=ts
-	echo 'let x: number = 1' | bin/mktemp -e .ts - | xargs -I@ tsc --noEmit @
+	echo 'let x: string = 1' | bin/mktemp -e .ts - | xargs tsc --noEmit
 	echo 'hooks = DEBUG && require("hooks")' | esbuild --define:DEBUG=true
 	echo 'hooks = DEBUG && require("hooks")' | esbuild --define:DEBUG=false
 	echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
